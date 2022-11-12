@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Weather Forecast Web-App</title>
+  </head>
+  <body>
+    <nav style="padding: 1px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;" class="navbar bg-light fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><i class="bi bi-brightness-alt-high-fill" style="vertical-align: -0.19em; color: rgb(212, 224, 0); font-size: 40px;margin-right : 10px;"></i>Weather Forecast</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://openweathermap.org/api">Link for Weather API website</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <!-- <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul> -->
+            <!-- <form class="d-flex mt-3" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+    <br>
+    <div class="wrapper">
+      <div class="sidebar">
+        <div>
+          <form action="" class="search" id="search">
+            <input type="text" id="query" placeholder="Search..." />
+            <button style="border: 1px solid #eeeeee;">
+              <i class="fas fa-search"></i>
+            </button>
+            <!-- adding suggestions with javascript-->
+          </form>
+          <div class="weather-icon">
+            <img src="icons/sun/4.png" alt="" id="icon" />
+          </div>
+          <div class="temprature">
+            <h1 id="temp">0</h1>
+            <span class="temp-unit">°C</span>
+          </div>
+          <div class="date-time">
+            <p style="color: #f1f1f1;;" id="date-time">Monday, 12:00</p>
+          </div>
+          <div class="divider"></div>
+          <div class="condition-rain">
+            <div class="location">
+              <div class="location-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="location-text">
+                <p style="margin-bottom: 0px;" id="location">location</p>
+              </div>
+            </div>
+            <div class="condition">
+              <i class="fas fa-cloud"></i>
+              <div class="condition" id="condition">condition</div>
+            </div>
+            <div class="rain">
+              <i class="fas fa-tint"></i>
+              <p style="margin-bottom: 0px;" id="rain">perc - 0%</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="main">
+        <nav>
+          <ul style="padding-left: 0px;" class="options">
+            <button class="hourly">today</button>
+            <button class="week active">week</button>
+          </ul>
+          <ul class="options units">
+            <button class="celcius active">°C</button>
+            <button class="fahrenheit">°F</button>
+          </ul>
+        </nav>
+        <div class="cards" id="weather-cards"></div>
+        <div class="highlights">
+          <h2 class="heading">today's highlights</h2>
+          <div class="cards">
+            <div class="card2">
+              <h4 class="card-heading">UV Index</h4>
+              <div class="content">
+                <p class="uv-index">0</p>
+                <p class="uv-text">Low</p>
+              </div>
+            </div>
+            <div class="card2">
+              <h4 class="card-heading">Wind Status</h4>
+              <div class="content">
+                <p class="wind-speed">0</p>
+                <p class="">Low</p>
+              </div>
+            </div>
+            <div class="card2">
+              <h4 class="card-heading">Sunrise & Sunset</h4>
+              <div class="content">
+                <p class="sun-rise">0</p>
+                <p class="sun-set">Low</p>
+              </div>
+            </div>
+            <div class="card2">
+              <h4 class="card-heading">Humidity</h4>
+              <div class="content">
+                <p class="humidity">0</p>
+                <p class="humidity-status">Low</p>
+              </div>
+            </div>
+            <div class="card2">
+              <h4 class="card-heading">Visibility</h4>
+              <div class="content">
+                <p class="visibility">0</p>
+                <p class="visibility-status">Low</p>
+              </div>
+            </div>
+            <div class="card2">
+              <h4 class="card-heading">Air Quality</h4>
+              <div class="content">
+                <p class="air-quality">0</p>
+                <p class="air-quality-status">Low</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="credits">Designed by Charul Srinivas</p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
